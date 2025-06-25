@@ -58,6 +58,9 @@ class GraphService:
     def load(self, filename: str):
         return self.graph_repository.load_graph(filename)
 
+    def load_graphs(self):
+        return self.graph_repository.load_graphs()
+
     def save_graph(self, alias: str, filename: str) -> Union[None, Error]:
         graph = self.get_graph(alias)
         if isinstance(graph, Error):

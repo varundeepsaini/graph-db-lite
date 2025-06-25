@@ -24,6 +24,7 @@ from validators.graph_validators import (
     validate_list_edges, validate_describe_graph, validate_load_graph,
     validate_save_graph
 )
+from utils.config import get_save_file_path
 
 class GraphDBLiteCLI:
     def __init__(self):
@@ -315,3 +316,6 @@ class GraphDBLiteCLI:
             return False
         self.print_success(GRAPH_SAVED.format(alias=graph_alias, filename=filename))
         return True
+
+    def load_graphs(self):
+        self.service.load_graphs()

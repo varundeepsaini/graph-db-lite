@@ -35,7 +35,6 @@ def run(cli: GraphDBLiteCLI):
     print(WELCOME_MESSAGE)
     print(HELP_PROMPT)
     print()
-    
     try:
         while not cli.should_exit:
             try:
@@ -56,6 +55,7 @@ def run(cli: GraphDBLiteCLI):
 
 def main():
     cli = GraphDBLiteCLI()
+    cli.load_graphs()
     try:
         run(cli)
     except KeyboardInterrupt:

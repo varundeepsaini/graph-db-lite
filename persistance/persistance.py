@@ -16,11 +16,19 @@ def dump_data_to_storage(data: list[Graph]):
 
 def load_data_from_storage() -> list[Graph]:
     data = read_json_from_file(save_file_path)
-    validation_result = validate_graph_json(data)
-    if isinstance(validation_result, Error):
-        logging.warning(validation_result)
+    if not isinstance(data, dict) or "graphs" not in data:
+        logging.warning("Invalid JSON structure: missing 'graphs' key")
         return []
-    return [graph for graph, _ in [get_graph_from_json(graph) for graph in data["graphs"]]]
+    
+    graphs = []
+    for graph_data in data["graphs"]:
+        graph, error = get_graph_from_json(graph_data)
+        if not error.is_empty():
+            logging.warning(f"Failed to load graph: {error.message}")
+            continue
+        graphs.append(graph)
+    
+    return graphs
 
 def get_json_from_graph(data: Graph):
     return {

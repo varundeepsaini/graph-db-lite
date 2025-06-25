@@ -113,6 +113,14 @@ class GraphRepository:
         else:
             logging.error(error)
             return error
+    
+    def load_graphs(self) -> Union[None, Error]:
+        graphs_list = load_data_from_storage()
+        graphs = {}
+        for graph in graphs_list:
+            graphs[graph.alias] = graph
+        self.graphs = graphs
+        return None
 
     def save_all_graphs(self) -> Union[None, Error]:
         try:

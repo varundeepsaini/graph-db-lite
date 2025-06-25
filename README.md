@@ -11,6 +11,8 @@ GraphDBLite allows you to:
 - Save graphs to disk and load them back
 - Persistent storage with automatic graceful shutdown
 
+[Video Demo Link](https://www.loom.com/share/2160f998b1d948d49df304e9018f1f7a?sid=01068fe4-d793-4ce4-9650-34323db64191)
+
 ## Installation
 
 1. Clone the repository
