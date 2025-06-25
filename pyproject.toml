@@ -3,4 +3,7 @@ name = "graphdblite"
 version = "0.1.0"
 description = "Persistent Lite Graph DB with Visualization"
 requires-python = ">=3.9"
-dependencies = []
+dependencies = [
+    "python-dotenv>=1.0.0",
+    "prompt-toolkit>=3.0.0"
+]

@@ -88,6 +88,22 @@ class GraphDBLiteCLI:
         self.should_exit = True
         return False
 
+    def graceful_shutdown(self):
+        try:
+            graphs = self.service.list_graphs()
+            if graphs:
+                self.print_info("Saving all graphs to disk...")
+                result = self.service.save_all_graphs()
+                if isinstance(result, Error):
+                    self.print_error(f"Failed to save graphs: {result.message}")
+                else:
+                    self.print_success(f"Successfully saved {len(graphs)} graph(s) to disk")
+            else:
+                self.print_info("No graphs to save")
+        except Exception as e:
+            self.print_error(f"Error during shutdown: {str(e)}")
+            logging.error(f"Error during graceful shutdown: {e}")
+
     def parse_command(self, command: str) -> tuple[str, List[str]]:
         parts = command.strip().split()
         if not parts:

@@ -1,4 +1,6 @@
-save_file_path: str = "/Users/varundeepsaini/PycharmProjects/GraphDBLite/a.json"
+from utils.config import get_save_file_path
+
+save_file_path: str = get_save_file_path()
 
 error_message_invalid_input = "Invalid input"
 

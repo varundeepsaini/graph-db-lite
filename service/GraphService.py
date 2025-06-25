@@ -69,3 +69,6 @@ class GraphService:
             return None
         except Exception as e:
             return Error(1, f"Failed to save graph: {str(e)}")
+
+    def save_all_graphs(self) -> Union[None, Error]:
+        return self.graph_repository.save_all_graphs()

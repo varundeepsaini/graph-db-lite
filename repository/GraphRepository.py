@@ -1,7 +1,7 @@
 import logging
 from typing import Union
 from models.Graph import Graph
-from persistance.persistance import load_data_from_storage, get_graph_from_storage
+from persistance.persistance import load_data_from_storage, get_graph_from_storage, dump_data_to_storage
 from utils.error import Error
 
 
@@ -113,3 +113,12 @@ class GraphRepository:
         else:
             logging.error(error)
             return error
+
+    def save_all_graphs(self) -> Union[None, Error]:
+        try:
+            graphs_list = list(self.graphs.values())
+            dump_data_to_storage(graphs_list)
+            return None
+        except Exception as e:
+            logging.error(f"Failed to save graphs: {e}")
+            return Error(1, f"Failed to save graphs: {str(e)}")
